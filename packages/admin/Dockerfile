@@ -4,16 +4,17 @@ FROM node:20-alpine as builder
 WORKDIR /app
 
 # 复制 package.json 和 yarn.lock
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml ./
+
+RUN npm install -g pnpm
 
 # 安装依赖
-RUN yarn install
-
+RUN pnpm install
 # 复制源代码
 COPY . .
 
 # 构建项目
-RUN yarn build
+RUN pnpm build
 
 # 运行阶段
 FROM nginx:alpine

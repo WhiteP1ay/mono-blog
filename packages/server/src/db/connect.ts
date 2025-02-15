@@ -8,8 +8,8 @@ import { User } from "../user/user.entity";
 import { Sentence } from "../sentence/sentence.entity";
 import { SentenceComment } from "../sentenceComment/sentenceComment.entity";
 import { init } from "./init";
-// 加载环境变量
-dotenv.config();
+// 加载根目录的环境变量
+dotenv.config({ path: "../../.env" });
 
 export const dataSource = new DataSource({
   type: "mysql",
@@ -20,7 +20,7 @@ export const dataSource = new DataSource({
   database: process.env.DB_NAME,
   timezone: "Z",
   entities: [Post, PostComment, Tag, Category, User, Sentence, SentenceComment],
-  synchronize: process.env.NODE_ENV === "development",
+  synchronize: process.env.ENV === "development",
 });
 
 export const connectDb = async () => {
