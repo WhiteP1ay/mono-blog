@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Md from "../../components/Md";
-import { Post } from "../../api/post";
+import type { Post } from "../../api/post";
 
 type ArticleProps = {
   data?: Post;

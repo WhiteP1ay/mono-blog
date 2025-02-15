@@ -1,5 +1,5 @@
 import Markdown from "react-markdown";
-import { Post } from "@api/post";
+import type { Post } from "@api/post";
 import { Button } from "antd";
 
 interface ListProps {

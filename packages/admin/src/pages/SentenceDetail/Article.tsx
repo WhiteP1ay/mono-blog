@@ -1,4 +1,4 @@
-import { Sentence } from "@api/sentence";
+import type { Sentence } from "@api/sentence";
 
 type ArticleProps = {
   data?: Sentence;
@@ -12,4 +12,4 @@ const Article = ({ data }: ArticleProps) => {
   );
 };
 
-export default Article; 
+export default Article;
