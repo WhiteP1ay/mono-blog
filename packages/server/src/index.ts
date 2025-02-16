@@ -9,7 +9,7 @@ async function bootstrap() {
   await connectDb();
 
   const port = Number(process.env.APP_PORT) || 3000;
-  const host = process.env.APP_HOST || "localhost";
+  const host = "localhost";
 
   const app = createApp();
 

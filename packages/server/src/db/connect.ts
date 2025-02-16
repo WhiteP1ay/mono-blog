@@ -8,10 +8,13 @@ import { User } from "../user/user.entity";
 import { Sentence } from "../sentence/sentence.entity";
 import { SentenceComment } from "../sentenceComment/sentenceComment.entity";
 import { init } from "./init";
+import { MysqlConnectionOptions } from "typeorm/driver/mysql/MysqlConnectionOptions";
 // 加载根目录的环境变量
-dotenv.config({ path: "../../.env" });
+dotenv.config({
+  path: process.cwd() + "/.env"
+});
 
-export const dataSource = new DataSource({
+const connectionOptions: MysqlConnectionOptions = {
   type: "mysql",
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
@@ -20,8 +23,12 @@ export const dataSource = new DataSource({
   database: process.env.DB_NAME,
   timezone: "Z",
   entities: [Post, PostComment, Tag, Category, User, Sentence, SentenceComment],
-  synchronize: process.env.ENV === "development",
-});
+  synchronize: process.env.NEED_SYNC === "true",
+};
+
+console.log({ connectionOptions });
+
+export const dataSource = new DataSource(connectionOptions);
 
 export const connectDb = async () => {
   try {
